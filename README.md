@@ -10,7 +10,8 @@ A Python project that pulls real football data (squads, fixtures, odds) to:
 
 - **Language:** Python
 - **Data source:** [football-data.org](https://www.football-data.org/) API (squads, fixtures, competitions)
-- **Backend/UI:** FastAPI and/or Streamlit (TBD as the project grows)
+- **Backend:** FastAPI
+- **Front-end:** Plain HTML/CSS + Jinja2 templates (no JS framework) — chosen deliberately to actually learn front-end fundamentals rather than relying on a Python-only UI tool like Streamlit
 - **Database:** SQLite (local file, simple for a solo project)
 - **Env management:** `python-dotenv` for API keys
 
@@ -67,4 +68,6 @@ A Python project that pulls real football data (squads, fixtures, odds) to:
 
 Paste a short summary here at the end of each working session (what got done, what's next). If you ever start a fresh AI chat with no memory of this project, paste this whole README back to it first — that's enough context to pick up right where you left off.
 
-**[Date] —** Project created. Repo set up, `.env` configured, planning done. Next: fetch first club's squad.
+**Sept 14 —** Project created. Repo set up, `.env` configured, planning done. Next: fetch first club's squad.
+
+**Sept 16 —** First successful API call (Man City squad fetched, status 200). Decided against Streamlit in favor of FastAPI + plain HTML/CSS, specifically to learn real front-end skills for the pitch visual. Next: design SQLite schema for `players` and `clubs`.
