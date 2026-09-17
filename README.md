@@ -39,12 +39,17 @@ A Python project that pulls real football data (squads, fixtures, odds) to:
    python main.py
    ```
 
+5. Create the local database (this generates `football.db`, which is git-ignored and won't come with the repo):
+   ```
+   python database.py
+   ```
+
 **Never commit your `.env` file or share your API key.** The included `.gitignore` (Python template) already excludes it.
 
 ## Roadmap
 
-- [ ] Fetch one club's squad from the API and print it
-- [ ] Design `players` and `clubs` database schema
+- [x] Fetch one club's squad from the API and print it
+- [x] Design `players` and `clubs` database schema
 - [ ] Store squad data in SQLite
 - [ ] Loop over all Premier League clubs
 - [ ] Build a simple UI showing one club's squad on a pitch
@@ -59,6 +64,7 @@ A Python project that pulls real football data (squads, fixtures, odds) to:
 
 - Using SQLite, not Postgres, for now — simpler for a solo beginner project
 - Starting with one league only to avoid API rate-limit/data-volume issues
+- Commenting style: comment non-obvious concepts (e.g. what a cursor is, why a foreign key matters) rather than every single line — balances learning value against readability
 
 ## Open Questions
 
@@ -71,3 +77,5 @@ Paste a short summary here at the end of each working session (what got done, wh
 **Sept 14 —** Project created. Repo set up, `.env` configured, planning done. Next: fetch first club's squad.
 
 **Sept 16 —** First successful API call (Man City squad fetched, status 200). Decided against Streamlit in favor of FastAPI + plain HTML/CSS, specifically to learn real front-end skills for the pitch visual. Next: design SQLite schema for `players` and `clubs`.
+
+**Sept 16 —** Created `database.py`, separate from `main.py`, to keep fetching and storage logic apart. Built `clubs` and `players` tables with a foreign key linking players to their club. Verified both tables exist in `football.db` with a temporary check query (since removed). Next: write insert logic so fetched squad data actually gets saved into these tables.
