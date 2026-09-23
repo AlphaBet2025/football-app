@@ -50,7 +50,7 @@ A Python project that pulls real football data (squads, fixtures, odds) to:
 
 - [x] Fetch one club's squad from the API and print it
 - [x] Design `players` and `clubs` database schema
-- [ ] Store squad data in SQLite
+- [x] Store squad data in SQLite
 - [ ] Loop over all Premier League clubs
 - [ ] Build a simple UI showing one club's squad on a pitch
 - [ ] Add predicted lineup logic (based on minutes played / odds)
@@ -79,3 +79,5 @@ Paste a short summary here at the end of each working session (what got done, wh
 **Sept 16 —** First successful API call (Man City squad fetched, status 200). Decided against Streamlit in favor of FastAPI + plain HTML/CSS, specifically to learn real front-end skills for the pitch visual. Next: design SQLite schema for `players` and `clubs`.
 
 **Sept 16 —** Created `database.py`, separate from `main.py`, to keep fetching and storage logic apart. Built `clubs` and `players` tables with a foreign key linking players to their club. Verified both tables exist in `football.db` with a temporary check query (since removed). Next: write insert logic so fetched squad data actually gets saved into these tables.
+
+**Sept 22 —** Added `insert_club`, `insert_player`, and `get_all_players` functions to `database.py`, using `INSERT OR REPLACE` so re-running the script keeps data current instead of erroring on duplicates. Wired `main.py` to call these with the real Man City API response. Confirmed working — all 25 players saved to `football.db` with correct club linkage. Next: loop over all Premier League clubs instead of just one hardcoded team.

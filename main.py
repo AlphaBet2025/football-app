@@ -1,6 +1,7 @@
 import requests  # sends web requests, lets Python talk to APIs
 from dotenv import load_dotenv
 import os
+from database import insert_club, insert_player, get_all_players
 
 load_dotenv()  # loads variables from .env
 api_key = os.getenv("FOOTBALL_API_KEY")
@@ -10,5 +11,18 @@ headers = {"X-Auth-Token": api_key}  # attaches your API key so the request is r
 
 response = requests.get(url, headers=headers)
 
-print(response.status_code)  # 200 = success, 401/403 = key problem, 404 = wrong URL
-print(response.json())
+data = response.json()  # converts the JSON response into a Python dictionary
+
+insert_club(data["id"], data["name"], data["venue"])
+
+for player in data["squad"]:
+    insert_player(
+        player["id"],
+        player["name"],
+        player["position"],
+        player["dateOfBirth"],  
+        player["nationality"],
+        data["id"]  # club_id, linking the player to their club
+    )
+
+print("Data saved to database.")

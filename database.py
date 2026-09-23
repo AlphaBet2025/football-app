@@ -24,3 +24,15 @@ CREATE TABLE IF NOT EXISTS players (
 """)
 
 conn.commit() # saves changes to the database
+
+def insert_club(club_id, name, venue):
+    cursor.execute("INSERT OR REPLACE INTO clubs (id, name, venue) VALUES (?, ?, ?)", (club_id, name, venue))
+    conn.commit()
+
+def insert_player(player_id, name, position, date_of_birth, nationality, club_id):
+    cursor.execute("INSERT OR REPLACE INTO players (id, name, position, date_of_birth, nationality, club_id) VALUES (?, ?, ?, ?, ?, ?)", (player_id, name, position, date_of_birth, nationality, club_id))
+    conn.commit()
+
+def get_all_players():
+    cursor.execute("SELECT * FROM players")
+    return cursor.fetchall()  # returns a list of tuples, each tuple is a row in the players table
