@@ -26,3 +26,24 @@ for player in data["squad"]:
     )
 
 print("Data saved to database.")
+
+teams_url = "https://api.football-data.org/v4/competitions/PL/teams"
+teams_response = requests.get(teams_url, headers=headers)
+teams_data = teams_response.json()
+
+for team in teams_data["teams"]:
+    insert_club(team["id"], team["name"], team["venue"])
+
+    for player in team["squad"]:
+        insert_player(
+            player["id"],
+            player["name"],
+            player["position"],
+            player["dateOfBirth"],
+            player["nationality"],
+            team["id"]
+        )
+
+    print(f"Saved {team['name']} ({len(team['squad'])} players)")
+
+print("All Premier League clubs saved.")
