@@ -70,6 +70,13 @@ A Python project that pulls real football data (squads, fixtures, odds) to:
 
 - How does the API represent formation/position in the squad response? (check once we fetch real data)
 
+## Future Project Ideas (not started)
+
+- Match outcome predictor (pandas, scikit-learn/XGBoost) — using historical PL data (possession, goals, defense, home advantage, matchups) to predict win/loss/draw
+- Player value analyzer (pandas, scikit-learn/XGBoost) — estimate a player's "should-be" value from performance, age, position, contract to spot over/undervalued players
+- AI player scout (pandas/scikit-learn + OpenAI API) — given a club's roster, weaknesses, and budget, suggest transfer targets; ML does the analysis, the API layer explains it in natural language
+- Possibly combine all three into one PL analytics project later, once this project is more mature
+
 ## Session Log
 
 Paste a short summary here at the end of each working session (what got done, what's next). If you ever start a fresh AI chat with no memory of this project, paste this whole README back to it first — that's enough context to pick up right where you left off.
