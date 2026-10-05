@@ -1,6 +1,7 @@
 import sqlite3  # built-in module for working with SQLite, no installation needed
 
-conn = sqlite3.connect("football.db")  # creates football.db if it doesn't exist, or opens it if it does
+conn = sqlite3.connect("football.db", check_same_thread=False)  # creates football.db if it doesn't exist, or opens it if it does
+# check_same_thread=False allows FastAPI's background threads to reuse this same connection
 cursor = conn.cursor()  # the tool used to run SQL commands through this connection
 
 cursor.execute("""
@@ -36,3 +37,12 @@ def insert_player(player_id, name, position, date_of_birth, nationality, club_id
 def get_all_players():
     cursor.execute("SELECT * FROM players")
     return cursor.fetchall()  # returns a list of tuples, each tuple is a row in the players table
+
+def get_players_by_club(club_id):
+    cursor.execute("SELECT * FROM players WHERE club_id = ?", (club_id,))
+    return cursor.fetchall()  # returns a list of tuples, each tuple is a row in the players table for the specified club
+
+def get_club_name(club_id):
+    cursor.execute("SELECT name FROM clubs WHERE id = ?", (club_id,))
+    result = cursor.fetchone()
+    return result[0] if result else None  # returns the club name if found, otherwise None

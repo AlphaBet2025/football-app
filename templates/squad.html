@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ club_name }} Squad</title>
+</head>
+<body>
+    <h1>{{ club_name }}</h1>
+    <ul>
+        {% for player in players %}
+            <li>{{ player[1] }} - {{ player[2] }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
